@@ -193,3 +193,63 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+// 1function displayPerson(person) {
+    //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
+            // HINT: Look for a person-object stringifier utility function to help
+// 2function findPersonFamily(person) {
+     //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
+            // HINT: Look for a people-collection stringifier utility function to help
+            // let personFamily = findPersonFamily(person[0], people);
+            // alert(personFamily);
+            // break;
+function findPersonFamily(person, people) {
+let family = {
+    'spouse': `${person.firstName} has no spouse`,
+    'parents': `${person.firstName} has no parents`,
+    'siblings': `${person.firstName} has no siblings`
+};
+if (person.currentSpouse) {
+    let spouse = people.filter((el) => {
+    return el.id === person.currentSpouse;
+    });
+    family['spouse'] = getNameListString(spouse);
+}
+
+if (person.parents) {
+    let parents = people.filter((el) => {
+    return person.parents.includes(el.id);
+    });
+    if (parents.length > 0) {
+    family['parents'] = getNameListString(parents);
+    }
+    
+}
+
+let siblings = people.filter((el) => {
+    for (let parent of person.parents) {
+    if (el.parents.includes(parent) && el !== person) {
+        return true;
+    }
+    }
+});
+if (siblings.length > 0) {
+    family['siblings'] = getNameListString(siblings);
+}
+
+return family;
+}
+// 3function findPersonDescendants(person) {
+    //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
+            // // HINT: Review recursion lecture + demo for bonus user story
+            // let personDescendants = findPersonDescendants(person[0], people);
+            // alert(personDescendants);
+            // break;
+// 4function searchByTraits(person) {
+//     TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
+//     //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
+// searchResults = searchByTraits(people);
+// break;
+    
+
+         
